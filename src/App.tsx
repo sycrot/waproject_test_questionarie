@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import { TextField, Box, Button, Container, Divider, ButtonGroup } from '@mui/material'
 import { QuestionItem } from './components/QuestionItem/QuestionItem'
@@ -8,6 +8,7 @@ const App = () => {
 	const [numQuestions, setNumQuestions] = useState(0)
 	const [display, setDisplay] = useState('block')
 	const [listQuestions, setListQuestions] = useState([])
+	const [points, setPoints] = useState(0)
 
 	const getQuestions = () => {
 		let res = Data.getQuestions(numQuestions, setListQuestions)
@@ -25,6 +26,23 @@ const App = () => {
 		setNumQuestions(0)
 
 		getQuestions()
+	}
+
+	const handleNumPoints = (value: string) => {
+        if (value === 'true') return value
+    }
+
+	const handlePoints = () => {
+		const radio = document.querySelectorAll('.radio_group_question_marc')
+
+        let arr:any = []
+        
+        radio.forEach(e => {
+            arr.push(e.getAttribute('data-option'))
+        })
+
+        let point = arr.filter(handleNumPoints)
+        setPoints(point.length)
 	}
 
 	return (
@@ -52,9 +70,16 @@ const App = () => {
 			<Container maxWidth="sm">
 				{
 					listQuestions.map((item, index) => (
-						<QuestionItem data={item} key={index}/>
+						<QuestionItem 
+							data={item} 
+							id={index}
+							/>
 					))
 				}
+			</Container>
+
+			<Container maxWidth="sm">
+				<Button onClick={e => handlePoints()}>Clickme</Button>
 			</Container>
 		</Container>
 
