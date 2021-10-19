@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { TextField, Box, Button, Container, Divider, ButtonGroup } from '@mui/material'
 import { QuestionItem } from './components/QuestionItem/QuestionItem'
 import Data from './data/questions'
+import { Question } from './types/Question'
 
 const App = () => {
 	const [numQuestions, setNumQuestions] = useState(0)
 	const [display, setDisplay] = useState('block')
-	const [listQuestions, setListQuestions] = useState([])
+	const [listQuestions, setListQuestions] = useState<Question[]>([])
 	const [points, setPoints] = useState(0)
 
 	const getQuestions = () => {
@@ -28,23 +29,28 @@ const App = () => {
 		getQuestions()
 	}
 
-	const handleNumPoints = (value: string) => {
-        if (value === 'true') return value
+	const handleTrue = (item: number, done: boolean) => {
+		let newList = [...listQuestions]
+
+		for (let i in newList) { 
+			if (newList[i].id === item) {
+				newList[i].point_question = done
+			}
+		}
+
+		setListQuestions(newList)
     }
 
 	const handlePoints = () => {
-		const radio = document.querySelectorAll('.radio_group_question_marc')
+		let points = 0
+		listQuestions.forEach((item: any) => {
+			if (item.point_question === true) {
+				points++
+			}
+		})
 
-        let arr:any = []
-        
-        radio.forEach(e => {
-            arr.push(e.getAttribute('data-option'))
-        })
-
-        let point = arr.filter(handleNumPoints)
-        setPoints(point.length)
+		setPoints(points)
 	}
-
 	return (
 		<Container>
 			<Box sx={{width: '100%'}}>
@@ -69,10 +75,11 @@ const App = () => {
 
 			<Container maxWidth="sm">
 				{
-					listQuestions.map((item, index) => (
+					listQuestions.map((item, key) => (
 						<QuestionItem 
 							data={item} 
-							id={index}
+							key={key}
+							onChange={handleTrue}
 							/>
 					))
 				}
