@@ -7,12 +7,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ListQuestions from './components/ListQuestions/ListQuestions';
 import PointsTemplate from './components/PointsTemplate/PointsTemplate';
 import ReportPage from './components/ReportPage/ReportPage';
+import StartPage from './components/StartPage/StartPage';
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route path="/" exact={true} component={App} />
       <Route path="/questions/:num" component={ListQuestions} />
+      <Route path="/startPage/:num" component={StartPage} />
       <Route path="/points/:id?" component={PointsTemplate}/>
       <Route path="/reporting" component={ReportPage}/>
     </Switch>
