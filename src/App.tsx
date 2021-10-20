@@ -1,12 +1,10 @@
 import './App.css'
 import { Box, Container, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material'
 import TitleItem from './components/TitleItem/TitleItem'
-import { useState } from 'react'
 import {  useHistory } from 'react-router'
 import ButtonLink from './components/ButtonLink/ButtonLink'
 
 const App = () => {
-	const [numQuestions, setNumQuestions] = useState('')
 	let history = useHistory()
 	const local = localStorage.getItem('reporting') === null ? '' : JSON.parse(localStorage['reporting'])
 
@@ -48,7 +46,6 @@ const App = () => {
 					<Select
 						labelId="demo-simple-select-helper-label"
 						id="demo-simple-select-helper"
-						value={numQuestions}
 						label="Quantidade"
 						onChange={handleNumQuestions}
 					>

@@ -7,7 +7,7 @@ import ReportItem from "./ReportItem/ReportItem"
 
 const ReportPage = () => {
     const [list, setList] = useState([])
-    const local = JSON.parse(localStorage['reporting'])
+    const local = localStorage.getItem('reporting') === null ? '' : JSON.parse(localStorage['reporting'])
 
     useEffect(() => {
         let listReporting = local
@@ -15,7 +15,7 @@ const ReportPage = () => {
     }, [])
 
     const handleReportItem = () => {
-        if (list !== null) {
+        if (local !== '') {
             return (
                 list.map((item, index) => (
                     <ReportItem data={item} id={index} />
@@ -23,7 +23,23 @@ const ReportPage = () => {
             )
         }
         return (
-            <h1>sjjsjs</h1>
+            <Container
+            sx={{
+                height: '100px',
+                background: '#e9f5fc',
+                borderRadius: '10px',
+                padding: '10px 0',
+                margin: '10px 0',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+            }}
+            >
+                <Box
+                    >
+                    <p><strong style={{color: '#0d4059'}}>Lista vazia. Responda um questionário!</strong></p>
+                </Box>
+            </Container>
         )
     }
 

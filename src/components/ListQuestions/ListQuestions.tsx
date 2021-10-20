@@ -11,7 +11,6 @@ import TitleItem from "../TitleItem/TitleItem"
 const ListQuestions = () => {
     const num = useParams()
     const [listQuestions, setListQuestions] = useState<Question[]>([])
-    const [points, setPoints] = useState(0)
 
     useEffect(() => {
         const getList = () => {
@@ -66,7 +65,8 @@ const ListQuestions = () => {
 
 			localStorage.setItem('reporting', JSON.stringify(local))
 		}
-        setPoints(points)
+
+        window.scrollTo(0,0)
 	}
 
     return (
