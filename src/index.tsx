@@ -3,11 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import ListQuestions from './components/ListQuestions/ListQuestions';
+import PointsTemplate from './components/PointsTemplate/PointsTemplate';
+import ReportPage from './components/ReportPage/ReportPage';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Switch>
+      <Route path="/" exact={true} component={App} />
+      <Route path="/questions/:num" component={ListQuestions} />
+      <Route path="/points/:id?" component={PointsTemplate}/>
+      <Route path="/reporting" component={ReportPage}/>
+    </Switch>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

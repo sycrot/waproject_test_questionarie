@@ -3,5 +3,6 @@ export type Question = {
     question: string
     answers: any
     correct_answer: string,
+    answer_option: string,
     point_question: boolean
 }

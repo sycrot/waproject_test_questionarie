@@ -1,3 +1,4 @@
+import AnswersRandom from "../controllers/AnswersRandom"
 import { Question } from "../types/Question"
 
 
@@ -13,7 +14,7 @@ export default {
                 let data = jsonData.results
 
                 data.forEach((res:any, index: any) => {
-                    let answers = []
+                    let answers:any = []
                     
                     answers.push(res.correct_answer)
                     res.incorrect_answers.map((i: string) => (
@@ -23,8 +24,9 @@ export default {
                     list.push({
                         id: index,
                         question: res.question,
-                        answers: answers,
+                        answers: AnswersRandom.answersRandom(answers),
                         correct_answer: res.correct_answer,
+                        answer_option: '',
                         point_question: false
                     })
                 })
