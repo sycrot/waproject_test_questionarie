@@ -38,6 +38,7 @@ const ReportItem = ({id, data}: Props) => {
                 justifyContent: 'space-between',
                 alignItems: 'center'
             }}
+            id={id}
         >
             <Box
                 >

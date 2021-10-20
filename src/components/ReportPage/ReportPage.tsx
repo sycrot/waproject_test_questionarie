@@ -14,6 +14,19 @@ const ReportPage = () => {
         setList(listReporting)
     }, [])
 
+    const handleReportItem = () => {
+        if (list !== null) {
+            return (
+                list.map((item, index) => (
+                    <ReportItem data={item} id={index} />
+                ))
+            )
+        }
+        return (
+            <h1>sjjsjs</h1>
+        )
+    }
+
     return(
         <Container
             sx={{
@@ -26,9 +39,7 @@ const ReportPage = () => {
         >
             <TitleItem text="Relatórios"/>
             {
-                list.map((item, index) => (
-                    <ReportItem data={item} id={index} />
-                ))
+                handleReportItem()
             }
             <Box sx={{marginTop: '10px'}}>
                 <ButtonLink 

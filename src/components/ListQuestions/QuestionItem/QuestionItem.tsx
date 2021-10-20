@@ -24,7 +24,7 @@ export const QuestionItem = ({data, key, onChange}: Props) => {
                             control={<Radio sx={{color: '#0d4059'}}/>} 
                             sx={{color: '#06202d'}}
                             label={item} 
-                            key={index} 
+                            id={index} 
                             value={item} 
                             onChange={e => onChange(data.id, item, item === data.correct_answer ? true : false)}/>
                     ))

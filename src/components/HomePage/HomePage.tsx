@@ -6,9 +6,20 @@ import TitleItem from '../TitleItem/TitleItem'
 
 export const HomePage = () => {
 	const [numQuestions, setNumQuestions] = useState(0)
+	const local = localStorage.getItem('reporting') === null ? '' : JSON.parse(localStorage['reporting'])
 
 	const handleNumQuestions = (num: number) => {
 		setNumQuestions(+num)
+	}
+
+	const handleButtonReporting = () => {
+		if (local !== '') {
+			return (
+				<Box sx={{marginTop: '10px'}}>
+					<ButtonLink text="Relatórios" link="/reporting" color="#59200d" textColor="#f9dcd2"/>
+				</Box>
+			)
+		}
 	}
     
     return (
@@ -50,9 +61,7 @@ export const HomePage = () => {
 					</ButtonGroup>
 			</Box>
 
-			<Box sx={{marginTop: '10px'}}>
-				<ButtonLink text="Relatórios" link="/reporting" color="#59200d" textColor="#f9dcd2"/>
-			</Box>
+			{handleButtonReporting()}
 		</Container>
     )
 }
